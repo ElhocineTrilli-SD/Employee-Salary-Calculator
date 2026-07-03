@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="../Business Layer/Business Layer.csproj" />
+  <Project Path="../DataAccess/DataAccess.csproj" />
+  <Project Path="Employee Salary Calculator.csproj" Id="3a7835e9-45ba-4e5b-a761-5c005a08689a" />
+</Solution>
