@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
-            this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtUsername = new Guna.UI2.WinForms.Guna2TextBox();
@@ -38,17 +37,9 @@
             this.btnLogin = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.label2 = new System.Windows.Forms.Label();
+            this.guna2GradientPanel2 = new Guna.UI2.WinForms.Guna2GradientPanel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(217, 476);
-            this.panel1.TabIndex = 0;
             // 
             // label1
             // 
@@ -106,7 +97,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PlaceholderText = "";
             this.txtPassword.SelectedText = "";
-            this.txtPassword.Size = new System.Drawing.Size(309, 50);
+            this.txtPassword.Size = new System.Drawing.Size(309, 49);
             this.txtPassword.TabIndex = 4;
             // 
             // btnLogin
@@ -142,18 +133,28 @@
             this.label2.Text = "X";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
+            // guna2GradientPanel2
+            // 
+            this.guna2GradientPanel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.guna2GradientPanel2.FillColor = System.Drawing.Color.LightSeaGreen;
+            this.guna2GradientPanel2.FillColor2 = System.Drawing.Color.Teal;
+            this.guna2GradientPanel2.Location = new System.Drawing.Point(0, 0);
+            this.guna2GradientPanel2.Name = "guna2GradientPanel2";
+            this.guna2GradientPanel2.Size = new System.Drawing.Size(200, 476);
+            this.guna2GradientPanel2.TabIndex = 7;
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(658, 476);
+            this.Controls.Add(this.guna2GradientPanel2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -165,8 +166,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private Guna.UI2.WinForms.Guna2TextBox txtUsername;
@@ -174,6 +173,7 @@
         private Guna.UI2.WinForms.Guna2Button btnLogin;
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
         private System.Windows.Forms.Label label2;
+        private Guna.UI2.WinForms.Guna2GradientPanel guna2GradientPanel2;
     }
 }
 
