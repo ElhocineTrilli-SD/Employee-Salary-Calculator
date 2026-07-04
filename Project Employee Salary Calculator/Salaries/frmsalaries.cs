@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Employee_Salary_Calculator.Dashbord;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -31,7 +32,9 @@ namespace Employee_Salary_Calculator.Salaries
 
             cbEmp.ValueMember = con.GetData(Q).Columns["EmpID"].ToString();
             cbEmp.DisplayMember = con.GetData(Q).Columns["Name"].ToString();
-            cbEmp.DataSource = con.GetData(Q);    
+            cbEmp.DataSource = con.GetData(Q);
+            
+           
             
         }
 
@@ -49,6 +52,7 @@ namespace Employee_Salary_Calculator.Salaries
         private void cbEmp_SelectedIndexChanged(object sender, EventArgs e)
         {
             GetEmpSalary();
+            txtTotalAmount.Text = "";
         }
 
         private void GetEmpSalary()
@@ -65,6 +69,31 @@ namespace Employee_Salary_Calculator.Salaries
                 MessageBox.Show(x.Message);
             }
 
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            frmEmployee frm = new frmEmployee();
+            frm.Show();
+            this.Hide();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            frmsalaries frm = new frmsalaries();
+            frm.Show();
+            this.Hide();
+        }
+        int Tot = 0;
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if(Convert.ToInt32( txtDaysWorked.Text) >= 1 )
+            {
+                Tot = Convert.ToInt32(txtDailysalary.Text) * Convert.ToInt32(txtDaysWorked.Text);
+                txtTotalAmount.Text = "Rs " + Tot.ToString();
+                    
+            }
+            
         }
     }
 }
