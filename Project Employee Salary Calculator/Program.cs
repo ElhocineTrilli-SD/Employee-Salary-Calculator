@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Employee_Salary_Calculator.Dashbord;
+using Employee_Salary_Calculator.Salaries;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +18,7 @@ namespace Employee_Salary_Calculator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmLogin());
+            Application.Run(new frmsalaries());
         }
     }
 }
