@@ -41,8 +41,36 @@ namespace Employee_Salary_Calculator.Salaries
         function con;
         private void btnSavePayment_Click(object sender, EventArgs e)
         {
+            if (txtDaysWorked.Text == "" || txtDailysalary.Text == "" || txtTotalAmount.Text == "")
+            {
+                MessageBox.Show("Missing Data !!!");
+            }
+            else
+            {
+                try
+                {
+                    string EmployeeID = cbEmp.SelectedValue.ToString();
+                    string PDate = dtpPayment.Value.Date.ToString();
+                    int DaysWorked = Convert.ToInt32(txtDaysWorked.Text);
+                    int Base = Convert.ToInt32(txtDailysalary.Text);
+                    string Period = dtpSalary1.Value.Month.ToString() + " - " + dtpSalary1.Value.Year.ToString();
 
-        }
+                    string Query = "insert into Salaries values('{0}','{1}','{2}','{3}','{4}','{5}')";
+                    Query = string.Format(Query, EmployeeID, Period, Base, DaysWorked, Tot, PDate);
+                    con.SetData(Query);
+                    MessageBox.Show("Salary Added!!");
+                    ShowAllSalaries();
+                }
+                catch (Exception ex)
+                {
+
+                }
+                finally
+                {
+
+                }
+            }
+            }
 
         private void pictureBox7_Click(object sender, EventArgs e)
         {
@@ -85,7 +113,7 @@ namespace Employee_Salary_Calculator.Salaries
             this.Hide();
         }
         int Tot = 0;
-        private void btnEdit_Click(object sender, EventArgs e)
+        private void ShowTotalAmount_Click(object sender, EventArgs e)
         {
             if(Convert.ToInt32( txtDaysWorked.Text) >= 1 )
             {
