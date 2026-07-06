@@ -75,8 +75,7 @@ namespace Employee_Salary_Calculator.Dashbord
         private void frmEmployee_Load(object sender, EventArgs e)
         {
             ShowAllEmployee();
-
-           
+          
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -175,5 +174,23 @@ namespace Employee_Salary_Calculator.Dashbord
             }
 
         }
+
+        private void btnEmployees_Click(object sender, EventArgs e)
+        {
+            frmEmployee frm = new frmEmployee();
+            frm.Show();
+            this.Hide();
+        }
+
+        private void btnSalaryies_Click(object sender, EventArgs e)
+        {
+            frmsalaries frmsalaries = new frmsalaries();
+            frmsalaries.Show();
+            this.Hide();
+        }
+
+       
+
+      
     }
 }
