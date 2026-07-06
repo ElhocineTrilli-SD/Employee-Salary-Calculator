@@ -14,18 +14,15 @@ namespace Employee_Salary_Calculator.Dashbord
 {
     public partial class frmEmployee : Form
     {
+        public DataTable _dtEmployee;
         public frmEmployee()
         {
             InitializeComponent();
-            con = new function();
-            ShowAllEmployee();
         }
-        function con;
-
         public void ShowAllEmployee()
         {
-            string Query = "Select * from Employees";
-            dgvEmployees.DataSource = con.GetData(Query);
+            _dtEmployee = clsEmployee.GetAllEmployee();
+            dgvEmployees.DataSource = _dtEmployee;
         }
         private void btAddEmployee_Click(object sender, EventArgs e)
         {
@@ -42,34 +39,56 @@ namespace Employee_Salary_Calculator.Dashbord
                 int Salary = Convert.ToInt32(txtESalary.Text);
                 string JDate = dtpEmployee.Value.Date.ToString();
 
-                if (clsEmployee.AddNewEmployee(Name,Gender,Phone,Position,Salary,JDate))
+                if (clsEmployee.AddNewEmployee(Name, Gender, Phone, Position, Salary, JDate))
                 {
                     MessageBox.Show("Employee Added!!");
-                            ShowAllEmployee();
+                    frmEmployee_Load(null, null);
                 }
 
 
             }
 
         }
-
         private void exit_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void label2_Click(object sender, EventArgs e)
         {
             frmEmployee frm = new frmEmployee();
             frm.Show();
             this.Hide();
         }
-
         private void label3_Click(object sender, EventArgs e)
         {
-          frmsalaries frmsalaries = new frmsalaries();
+            frmsalaries frmsalaries = new frmsalaries();
             frmsalaries.Show();
             this.Hide();
+        }
+        private void frmEmployee_Load(object sender, EventArgs e)
+        {
+            ShowAllEmployee();
+        }
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            int EmpID = (int)dgvEmployees.CurrentRow.Cells[0].Value;
+            MessageBox.Show("EmpID : " + EmpID);
+        }
+
+        private void dgvEmployees_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvEmployees.Rows[e.RowIndex];
+
+                txtEName.Text = row.Cells[1].Value.ToString();
+                cbGen.Text = row.Cells[2].Value.ToString();
+                txtEPhone.Text = row.Cells[3].Value.ToString();
+                txtEPosition.Text = row.Cells[4].Value.ToString();
+                txtESalary.Text = row.Cells[5].Value.ToString();
+                dtpEmployee.Value = Convert.ToDateTime(row.Cells[6].Value);
+            }
         }
     }
 }
