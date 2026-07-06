@@ -41,7 +41,10 @@ namespace Employee_Salary_Calculator.Dashbord
 
                 if (clsEmployee.AddNewEmployee(Name, Gender, Phone, Position, Salary, JDate))
                 {
-                    MessageBox.Show("Employee Added!!");
+                    MessageBox.Show("The new employee has been added successfully.","Success",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                     );
                     frmEmployee_Load(null, null);
                 }
 
@@ -70,10 +73,44 @@ namespace Employee_Salary_Calculator.Dashbord
             ShowAllEmployee();
         }
 
-        private void guna2Button2_Click(object sender, EventArgs e)
+        private void btnDelete_Click(object sender, EventArgs e)
         {
             int EmpID = (int)dgvEmployees.CurrentRow.Cells[0].Value;
-            MessageBox.Show("EmpID : " + EmpID);
+
+            DialogResult result = MessageBox.Show(
+                              "Are you sure you want to delete this employee?",
+                              "Confirm Delete",
+                              MessageBoxButtons.YesNo,
+                              MessageBoxIcon.Warning
+                              );
+
+            if (result == DialogResult.Yes)
+            {
+                // delete Code : 
+                if (clsEmployee.DeleteEmployee(EmpID))
+                {
+                    MessageBox.Show(
+                                    "The employee with ID " + EmpID + " was deleted successfully.",
+                                    "Delete Successful",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information
+                                   );
+                    frmEmployee_Load(null, null);
+                }
+                else
+                {
+                    MessageBox.Show(
+                                    "Failed to delete the employee with ID " + EmpID + ". Please try again.",
+                                    "Delete Failed",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error
+                                   );
+                }
+            }
+
+           
+
+
         }
 
         private void dgvEmployees_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -89,6 +126,11 @@ namespace Employee_Salary_Calculator.Dashbord
                 txtESalary.Text = row.Cells[5].Value.ToString();
                 dtpEmployee.Value = Convert.ToDateTime(row.Cells[6].Value);
             }
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
