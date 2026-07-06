@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using System.Data;
 
 namespace Business_layer
 {
@@ -10,7 +11,10 @@ namespace Business_layer
             return clsEmployeeData.AddNewEmployee(Name, Gender, Phone, Position, Salary, JDate);
 
         }
-
+        public static DataTable GetAllEmployee()
+        {
+            return clsEmployeeData.GetAllEmployee();
+        }
 
     }
 }

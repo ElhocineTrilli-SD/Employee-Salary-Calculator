@@ -9,7 +9,7 @@ namespace DataAccess
 {
     public class clsEmployeeData
     {
-        public static bool  AddNewEmployee(string Name, string Gender, string Phone, string Position, int Salary, string JDate)
+        public static bool AddNewEmployee(string Name, string Gender, string Phone, string Position, int Salary, string JDate)
         {
             int RowAffected = 0;
             try
@@ -22,15 +22,41 @@ namespace DataAccess
 
                     using (SqlCommand command = new SqlCommand(Query, connection))
                     {
-                      RowAffected = command.ExecuteNonQuery();
+                        RowAffected = command.ExecuteNonQuery();
                     }
                 }
             }
             catch (Exception ex) { }
-                return RowAffected > 0;
+            return RowAffected > 0;
         }
 
+        public static DataTable GetAllEmployee()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsConnection.ConString))
+                {
+                    string Query = "Select * From employees";
 
+                    connection.Open();
+                    using(SqlCommand command = new SqlCommand(Query,connection))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        if(reader.Read())
+                        {
+                            dt.Load(reader);
+                        }
+                    }
+
+
+                }
+
+
+            }
+            catch(Exception ex) { };
+            return dt;
+    }
 
 
 
