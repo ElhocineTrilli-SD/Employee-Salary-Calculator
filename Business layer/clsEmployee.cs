@@ -23,6 +23,10 @@ namespace Business_layer
             //call DataAccess;
             return clsEmployeeData.DeleteEmployee(ID) > 0;
         }
-
+        public static bool UpdateEmployee(int ID, string Name, string Gender, string Phone, string Position, int Salary, string JDate)
+        {
+            //call DataAccess;
+            return clsEmployeeData.UpdateEmployee(ID,Name,Gender,Phone,Position,Salary,JDate) > 0;
+        }
     }
 }

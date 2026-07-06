@@ -83,7 +83,44 @@ namespace DataAccess
                 
         }
 
+        public static int UpdateEmployee(int ID, string Name, string Gender, string Phone, string Position, int Salary, string JDate)
+        {
+            int RowAffected = 0;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsConnection.ConString))
+                {
+                    connection.Open();
+                    string Query = @"UPDATE [dbo].[Employees]
+   SET [Name] = @Name
+      ,[Gender] = @Gender
+      ,[Phone] = @Phone
+      ,[Position] = @Position
+      ,[Salary] = @Salary
+      ,[Joindate] = @Joindate
+       WHERE EmpID = @EmpID";
+                                     
 
+
+                    using (SqlCommand command = new SqlCommand(Query, connection))
+                    {
+                        command.Parameters.AddWithValue("@EmpID", ID);
+                        command.Parameters.AddWithValue("@Name", Name);
+                        command.Parameters.AddWithValue("@Gender", Gender);
+                        command.Parameters.AddWithValue("@Phone", Phone);
+                        command.Parameters.AddWithValue("@Position", Position);
+                        command.Parameters.AddWithValue("@Salary", Salary);
+                        command.Parameters.AddWithValue("@Joindate", JDate);
+
+
+                        RowAffected = command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex) { }
+            return RowAffected;
+
+        }
 
 
 
