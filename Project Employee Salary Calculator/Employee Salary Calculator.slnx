@@ -1,3 +1,5 @@
 <Solution>
+  <Project Path="../Business layer/Business layer.csproj" Id="b4972416-1ba1-40cb-abc7-2648bbc3396d" />
+  <Project Path="../DataAccess/DataAccess.csproj" Id="193ad754-2b34-4718-a781-a8b497b3fe70" />
   <Project Path="Employee Salary Calculator.csproj" Id="3a7835e9-45ba-4e5b-a761-5c005a08689a" />
 </Solution>

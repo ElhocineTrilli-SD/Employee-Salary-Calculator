@@ -345,7 +345,7 @@
             this.btnAddEmployee.Size = new System.Drawing.Size(309, 49);
             this.btnAddEmployee.TabIndex = 14;
             this.btnAddEmployee.Text = "Add Employee";
-            this.btnAddEmployee.Click += new System.EventHandler(this.btnLogin_Click);
+            this.btnAddEmployee.Click += new System.EventHandler(this.btAddEmployee_Click);
             // 
             // btnEdit
             // 

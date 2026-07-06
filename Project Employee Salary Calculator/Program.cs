@@ -18,7 +18,7 @@ namespace Employee_Salary_Calculator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmsalaries());
+            Application.Run(new frmEmployee());
         }
     }
 }

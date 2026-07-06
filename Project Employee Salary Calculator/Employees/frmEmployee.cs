@@ -1,4 +1,5 @@
-﻿using Employee_Salary_Calculator.Salaries;
+﻿using Business_layer;
+using Employee_Salary_Calculator.Salaries;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,7 +27,7 @@ namespace Employee_Salary_Calculator.Dashbord
             string Query = "Select * from Employees";
             dgvEmployees.DataSource = con.GetData(Query);
         }
-        private void btnLogin_Click(object sender, EventArgs e)
+        private void btAddEmployee_Click(object sender, EventArgs e)
         {
             if (txtEName.Text == "" || txtEPhone.Text == "" || txtEPosition.Text == "" || txtESalary.Text == "")
             {
@@ -34,30 +35,22 @@ namespace Employee_Salary_Calculator.Dashbord
             }
             else
             {
-                try
-                {
-                    string Name = txtEName.Text;
-                    string Gender = cbGen.SelectedItem.ToString();
-                    string Phone = txtEPhone.Text;
-                    string Position = txtEPosition.Text;
-                    int Salary = Convert.ToInt32(txtESalary.Text);
-                    string JDate = dtpEmployee.Value.Date.ToString();
-                    string Query = "insert into Employees values('{0}','{1}','{2}','{3}','{4}','{5}')";
-                    Query = string.Format(Query,Name, Gender, Phone, Position, Salary,JDate);
-                    con.SetData(Query);
-                    MessageBox.Show("Employee Added!!");
-                    ShowAllEmployee();
-                }
-                catch(Exception ex )
-                {
+                string Name = txtEName.Text;
+                string Gender = cbGen.SelectedItem.ToString();
+                string Phone = txtEPhone.Text;
+                string Position = txtEPosition.Text;
+                int Salary = Convert.ToInt32(txtESalary.Text);
+                string JDate = dtpEmployee.Value.Date.ToString();
 
-                }
-                finally
+                if (clsEmployee.AddNewEmployee(Name,Gender,Phone,Position,Salary,JDate))
                 {
-                    
+                    MessageBox.Show("Employee Added!!");
+                            ShowAllEmployee();
                 }
+
 
             }
+
         }
 
         private void exit_Click(object sender, EventArgs e)
@@ -74,8 +67,8 @@ namespace Employee_Salary_Calculator.Dashbord
 
         private void label3_Click(object sender, EventArgs e)
         {
-            frmsalaries frm = new frmsalaries();
-            frm.Show();
+          frmsalaries frmsalaries = new frmsalaries();
+            frmsalaries.Show();
             this.Hide();
         }
     }
