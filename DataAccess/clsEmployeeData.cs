@@ -5,11 +5,12 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 namespace DataAccess
 {
     public class clsEmployeeData
     {
-        public static bool AddNewEmployee(string Name, string Gender, string Phone, string Position, int Salary, string JDate)
+        public static int AddNewEmployee(string Name, string Gender, string Phone, string Position, int Salary, string JDate)
         {
             int RowAffected = 0;
             try
@@ -27,7 +28,7 @@ namespace DataAccess
                 }
             }
             catch (Exception ex) { }
-            return RowAffected > 0;
+            return RowAffected ;
         }
 
         public static DataTable GetAllEmployee()
@@ -58,7 +59,29 @@ namespace DataAccess
             return dt;
     }
 
+        public static int DeleteEmployee(int ID)
+        {
+            int RowAffected = 0;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsConnection.ConString))
+                {
+                    connection.Open();
+                    string Query = @"Delete from Salaries where EmployeeID = @EmpID
+                                     Delete from Employees where EmpID = @EmpID ";
+                    
 
+                    using (SqlCommand command = new SqlCommand(Query, connection))
+                    {
+                        command.Parameters.AddWithValue("@EmpID", ID);
+                        RowAffected = command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex) { }
+            return RowAffected ;
+                
+        }
 
 
 
