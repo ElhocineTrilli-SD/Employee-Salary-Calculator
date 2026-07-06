@@ -16,29 +16,23 @@ namespace Employee_Salary_Calculator.Salaries
         public frmsalaries()
         {
             InitializeComponent();
-            con = new function();
             ShowAllSalaries();
             GetEmployee();
         }
         public void ShowAllSalaries()
         {
             string Query = "Select * from Salaries";
-            dgvSalaries.DataSource = con.GetData(Query);
         }
 
         public void GetEmployee()
         {
             string Q = "Select * from Employees";
 
-            cbEmp.ValueMember = con.GetData(Q).Columns["EmpID"].ToString();
-            cbEmp.DisplayMember = con.GetData(Q).Columns["Name"].ToString();
-            cbEmp.DataSource = con.GetData(Q);
-            
+         
            
             
         }
 
-        function con;
         private void btnSavePayment_Click(object sender, EventArgs e)
         {
             if (txtDaysWorked.Text == "" || txtDailysalary.Text == "" || txtTotalAmount.Text == "")
@@ -49,17 +43,17 @@ namespace Employee_Salary_Calculator.Salaries
             {
                 try
                 {
-                    string EmployeeID = cbEmp.SelectedValue.ToString();
-                    string PDate = dtpPayment.Value.Date.ToString();
-                    int DaysWorked = Convert.ToInt32(txtDaysWorked.Text);
-                    int Base = Convert.ToInt32(txtDailysalary.Text);
-                    string Period = dtpSalary1.Value.Month.ToString() + " - " + dtpSalary1.Value.Year.ToString();
+                    //string EmployeeID = cbEmp.SelectedValue.ToString();
+                    //string PDate = dtpPayment.Value.Date.ToString();
+                    //int DaysWorked = Convert.ToInt32(txtDaysWorked.Text);
+                    //int Base = Convert.ToInt32(txtDailysalary.Text);
+                    //string Period = dtpSalary1.Value.Month.ToString() + " - " + dtpSalary1.Value.Year.ToString();
 
-                    string Query = "insert into Salaries values('{0}','{1}','{2}','{3}','{4}','{5}')";
-                    Query = string.Format(Query, EmployeeID, Period, Base, DaysWorked, Tot, PDate);
-                    con.SetData(Query);
-                    MessageBox.Show("Salary Added!!");
-                    ShowAllSalaries();
+                    //string Query = "insert into Salaries values('{0}','{1}','{2}','{3}','{4}','{5}')";
+                    //Query = string.Format(Query, EmployeeID, Period, Base, DaysWorked, Tot, PDate);
+                    //con.SetData(Query);
+                    //MessageBox.Show("Salary Added!!");
+                    //ShowAllSalaries();
                 }
                 catch (Exception ex)
                 {
@@ -85,17 +79,17 @@ namespace Employee_Salary_Calculator.Salaries
 
         private void GetEmpSalary()
         {
-            try
-            {
-                string Q = "Select * from Employees where EmpID = {0} ";
-                Q = string.Format(Q,cbEmp.SelectedValue.ToString());
-                txtDailysalary.Text = con.GetData(Q).Rows[0]["Salary"].ToString();
+            //try
+            //{
+            //    string Q = "Select * from Employees where EmpID = {0} ";
+            //    Q = string.Format(Q,cbEmp.SelectedValue.ToString());
+            //    txtDailysalary.Text = con.GetData(Q).Rows[0]["Salary"].ToString();
 
-            }
-            catch ( Exception x  )
-            {
-                MessageBox.Show(x.Message);
-            }
+            //}
+            //catch ( Exception x  )
+            //{
+            //    MessageBox.Show(x.Message);
+            //}
 
         }
 

@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,6 +16,9 @@ namespace Employee_Salary_Calculator.Dashbord
     public partial class frmEmployee : Form
     {
         public DataTable _dtEmployee;
+
+       
+
         public frmEmployee()
         {
             InitializeComponent();
@@ -71,6 +75,8 @@ namespace Employee_Salary_Calculator.Dashbord
         private void frmEmployee_Load(object sender, EventArgs e)
         {
             ShowAllEmployee();
+
+           
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -130,6 +136,43 @@ namespace Employee_Salary_Calculator.Dashbord
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            int EmpID = (int)dgvEmployees.CurrentRow.Cells[0].Value;
+            string Name = txtEName.Text;
+            string Gender = cbGen.SelectedItem.ToString();
+            string Phone = txtEPhone.Text;
+            string Position = txtEPosition.Text;
+            int Salary = Convert.ToInt32(txtESalary.Text);
+            string JDate = dtpEmployee.Value.ToString();
+            DialogResult result = MessageBox.Show(
+                             "Are you sure you want to update employee Info?",
+                             "Confirm Update",
+                             MessageBoxButtons.YesNo,
+                             MessageBoxIcon.Warning
+                             );
+
+            if (result == DialogResult.Yes)
+            {
+                // Update Code : 
+                if (clsEmployee.UpdateEmployee(EmpID,Name,Gender,Phone,Position,Salary,JDate))
+                {
+                    MessageBox.Show(
+                                    "The employee with ID " + EmpID + " was updated successfully.",
+                                    "Update Successful",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information
+                                   );
+                    frmEmployee_Load(null, null);
+                }
+                else
+                {
+                    MessageBox.Show(
+                                    "Failed to update the employee info Please try again.",
+                                    "Update Failed",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error
+                                   );
+                }
+            }
 
         }
     }
