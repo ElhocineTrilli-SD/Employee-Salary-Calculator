@@ -44,8 +44,7 @@ namespace DataAccess
                     connection.Open();
                     using (SqlCommand command = new SqlCommand(Query, connection))
                     {
-                        SqlDataReader reader = command.ExecuteReader();
-                        if (reader.Read())
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
                             dt.Load(reader);
                         }
@@ -125,7 +124,7 @@ namespace DataAccess
         }
 
 
-        public bool GetEmployeeSalaryByID(int EmpID, ref int Salart)
+        public static bool GetEmployeeSalaryByID(int EmpID, ref int Salart)
         {
             bool IsFound = false;
             try
@@ -165,7 +164,7 @@ namespace DataAccess
             }
         return IsFound;
         }
-        public bool GetEmployeeNameByID(int EmpID, ref string Name)
+        public static bool GetEmployeeNameByID( ref int EmpID, ref string Name)
         {
             bool IsFound = false;
             try
@@ -174,12 +173,12 @@ namespace DataAccess
                 {
                     connection.Open();
 
-                    string query = "SELECT * FROM Employees WHERE EmpID = @EmpID";
+                    string query = "SELECT * FROM Employees ";
 
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@EmpID", EmpID);
+                        //command.Parameters.AddWithValue("@EmpID", EmpID);
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -188,6 +187,7 @@ namespace DataAccess
                                 // The record was found
                                 IsFound = true;
                                 Name = (string)reader["Name"];
+
                             }
                             else
                             {
