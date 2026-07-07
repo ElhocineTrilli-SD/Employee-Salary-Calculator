@@ -69,7 +69,7 @@
             this.txtUsername.Location = new System.Drawing.Point(291, 188);
             this.txtUsername.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.PlaceholderText = "";
+            this.txtUsername.PlaceholderText = "User Name";
             this.txtUsername.SelectedText = "";
             this.txtUsername.Size = new System.Drawing.Size(309, 49);
             this.txtUsername.TabIndex = 3;
@@ -88,7 +88,7 @@
             this.txtPassword.Location = new System.Drawing.Point(291, 265);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PlaceholderText = "";
+            this.txtPassword.PlaceholderText = "Password";
             this.txtPassword.SelectedText = "";
             this.txtPassword.Size = new System.Drawing.Size(309, 49);
             this.txtPassword.TabIndex = 4;
