@@ -25,7 +25,16 @@ namespace Employee_Salary_Calculator.Dashbord
         public void ShowAllEmployee()
         {
             _dtEmployee = clsEmployee.GetAllEmployee();
+
+            if (_dtEmployee.Rows.Count >0)
+            {
             dgvEmployees.DataSource = _dtEmployee;
+            }
+            else
+            {
+                MessageBox.Show("No Employee records ound.");
+            }
+           
         }
         private void btAddEmployee_Click(object sender, EventArgs e)
         {
@@ -49,6 +58,11 @@ namespace Employee_Salary_Calculator.Dashbord
                     MessageBoxIcon.Information
                      );
                     frmEmployee_Load(null, null);
+                }
+                else
+                {
+                    MessageBox.Show("Failed to add the new employee.", "Error",
+                        MessageBoxButtons.OK,MessageBoxIcon.Error);
                 }
 
 
@@ -191,6 +205,15 @@ namespace Employee_Salary_Calculator.Dashbord
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void txtESalary_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // JustNumbers
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
