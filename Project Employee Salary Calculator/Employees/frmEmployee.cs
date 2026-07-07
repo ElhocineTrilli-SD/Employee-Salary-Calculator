@@ -10,14 +10,13 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Employee_Salary_Calculator.Dashbord
 {
     public partial class frmEmployee : Form
     {
         public DataTable _dtEmployee;
-
-       
 
         public frmEmployee()
         {
@@ -56,22 +55,7 @@ namespace Employee_Salary_Calculator.Dashbord
             }
 
         }
-        private void exit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-        private void label2_Click(object sender, EventArgs e)
-        {
-            frmEmployee frm = new frmEmployee();
-            frm.Show();
-            this.Hide();
-        }
-        private void label3_Click(object sender, EventArgs e)
-        {
-            frmsalaries frmsalaries = new frmsalaries();
-            frmsalaries.Show();
-            this.Hide();
-        }
+    
         private void frmEmployee_Load(object sender, EventArgs e)
         {
             ShowAllEmployee();
@@ -174,12 +158,20 @@ namespace Employee_Salary_Calculator.Dashbord
             }
 
         }
+        private void RefreshEmployeeForm()
+        {
+            ShowAllEmployee();
+
+            txtEName.Clear();
+            txtEPhone.Clear();
+            txtEPosition.Clear();
+            txtESalary.Clear();
+            cbGen.SelectedIndex = 0;
+        }
 
         private void btnEmployees_Click(object sender, EventArgs e)
         {
-            frmEmployee frm = new frmEmployee();
-            frm.Show();
-            this.Hide();
+           RefreshEmployeeForm();
         }
 
         private void btnSalaryies_Click(object sender, EventArgs e)
@@ -189,8 +181,16 @@ namespace Employee_Salary_Calculator.Dashbord
             this.Hide();
         }
 
-       
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            frmLogin frm = new frmLogin();
+            frm.Show();
+            this.Close();
+        }
 
-      
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
