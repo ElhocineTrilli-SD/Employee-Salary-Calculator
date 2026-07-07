@@ -1,4 +1,5 @@
-﻿using Employee_Salary_Calculator.Dashbord;
+﻿using Business_layer;
+using Employee_Salary_Calculator.Dashbord;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,20 +14,34 @@ namespace Employee_Salary_Calculator.Salaries
 {
     public partial class frmsalaries : Form
     {
+        public DataTable _dtSalaries;
+
         public frmsalaries()
         {
             InitializeComponent();
-            ShowAllSalaries();
-            GetEmployee();
+          
         }
-        public void ShowAllSalaries()
+        public void ShowAllSalariesList()
         {
-            string Query = "Select * from Salaries";
+         _dtSalaries = clsSalary.GetAllSalaries();
+           if(_dtSalaries.Rows.Count> 0)
+            {
+            dgvSalaries.DataSource = _dtSalaries;
+            }
+            else
+            {
+                MessageBox.Show("No salary records found.");
+            }
         }
 
-        public void GetEmployee()
+        public void FillComboboxWithEmployeeNames()
         {
-            string Q = "Select * from Employees";
+          
+
+            cbEmp.ValueMember = clsEmployee.GetAllEmployee().Columns["EmpID"].ToString(); 
+            cbEmp.DisplayMember = clsEmployee.GetAllEmployee().Columns["Name"].ToString();
+
+            cbEmp.DataSource = clsEmployee.GetAllEmployee();
 
          
            
@@ -41,44 +56,45 @@ namespace Employee_Salary_Calculator.Salaries
             }
             else
             {
-                try
-                {
-                    //string EmployeeID = cbEmp.SelectedValue.ToString();
-                    //string PDate = dtpPayment.Value.Date.ToString();
-                    //int DaysWorked = Convert.ToInt32(txtDaysWorked.Text);
-                    //int Base = Convert.ToInt32(txtDailysalary.Text);
-                    //string Period = dtpSalary1.Value.Month.ToString() + " - " + dtpSalary1.Value.Year.ToString();
+                string EmployeeID = cbEmp.SelectedValue.ToString();
+                string Period = dtpSalary1.Value.Month.ToString() + " - " + dtpSalary1.Value.Year.ToString();
+                int Base = Convert.ToInt32(txtDailysalary.Text);
+                int DaysWorked = Convert.ToInt32(txtDaysWorked.Text);
+                int PaidAmount = Convert.ToInt32(txtTotalAmount.Text);
+                string PDate = dtpPayment.Value.Date.ToString();
 
-                    //string Query = "insert into Salaries values('{0}','{1}','{2}','{3}','{4}','{5}')";
-                    //Query = string.Format(Query, EmployeeID, Period, Base, DaysWorked, Tot, PDate);
-                    //con.SetData(Query);
-                    //MessageBox.Show("Salary Added!!");
-                    //ShowAllSalaries();
+                if(clsSalary.SaveSalary(EmployeeID, Period, Base, DaysWorked,PaidAmount, PDate))
+                {
+                    MessageBox.Show("The Payment has been added successfully.", "Success",
+                  MessageBoxButtons.OK,
+                  MessageBoxIcon.Information
+                   );
+                    frmsalaries_Load(null, null);
                 }
-                catch (Exception ex)
+                else
                 {
-
-                }
-                finally
-                {
-
+                    MessageBox.Show("Failed to add the Payment.", "Error",
+                       MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            }
 
-        private void pictureBox7_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        }  
 
         private void cbEmp_SelectedIndexChanged(object sender, EventArgs e)
         {
-            GetEmpSalary();
+            GetEmployeeSalary();
             txtTotalAmount.Text = "";
         }
 
-        private void GetEmpSalary()
+        private void GetEmployeeSalary()
         {
+            int EmpID =Convert.ToInt32( cbEmp.SelectedValue.ToString());
+            int Salary = 0;
+            if(clsEmployee.GetEmployeeSalaryByID(EmpID,ref Salary))
+            {
+                txtDailysalary.Text = Salary.ToString();
+            }
+
             //try
             //{
             //    string Q = "Select * from Employees where EmpID = {0} ";
@@ -92,30 +108,90 @@ namespace Employee_Salary_Calculator.Salaries
             //}
 
         }
-
-        private void label2_Click(object sender, EventArgs e)
+       
+        private void ShowTotalAmount_Click(object sender, EventArgs e)
+        {
+            int Tot = 0;
+            if (Convert.ToInt32( txtDaysWorked.Text) >= 1 )
+            {
+                Tot = Convert.ToInt32(txtDailysalary.Text) * Convert.ToInt32(txtDaysWorked.Text);
+                txtTotalAmount.Text =  Tot.ToString();
+                    
+            }
+            
+        }
+        private void btnEmployees_Click(object sender, EventArgs e)
         {
             frmEmployee frm = new frmEmployee();
             frm.Show();
             this.Hide();
         }
+        private void RefreshSalariesForm()
+        {
+            ShowAllSalariesList();
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-            frmsalaries frm = new frmsalaries();
-            frm.Show();
-            this.Hide();
-        }
-        int Tot = 0;
-        private void ShowTotalAmount_Click(object sender, EventArgs e)
-        {
-            if(Convert.ToInt32( txtDaysWorked.Text) >= 1 )
-            {
-                Tot = Convert.ToInt32(txtDailysalary.Text) * Convert.ToInt32(txtDaysWorked.Text);
-                txtTotalAmount.Text = "Rs " + Tot.ToString();
-                    
-            }
+            txtDailysalary.Clear();
+            txtDaysWorked.Clear();
+            txtTotalAmount.Clear();
+
+            cbEmp.SelectedIndex = 0;
             
+        }
+        private void btnSalaryies_Click(object sender, EventArgs e)
+        {
+         RefreshSalariesForm(); 
+        }
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            frmLogin frm = new frmLogin();
+            frm.Show();
+            this.Close();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void frmsalaries_Load(object sender, EventArgs e)
+        {
+            ShowAllSalariesList();
+            FillComboboxWithEmployeeNames();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+          int salaryID = (int)dgvSalaries.CurrentRow.Cells[0].Value;
+            DialogResult result = MessageBox.Show(
+                             "Are you sure you want to delete this Record?",
+                             "Confirm Delete",
+                             MessageBoxButtons.YesNo,
+                             MessageBoxIcon.Warning
+                             );
+
+            if (result == DialogResult.Yes)
+            {
+                // delete Code : 
+                if (clsSalary.DeleteSalartRecord(salaryID))
+                {
+                    MessageBox.Show(
+                                    "The record with ID " + salaryID + " was deleted successfully.",
+                                    "Delete Successful",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information
+                                   );
+                    frmsalaries_Load(null, null);
+                }
+                else
+                {
+                    MessageBox.Show(
+                                    "Failed to delete the record with ID " + salaryID + ". Please try again.",
+                                    "Delete Failed",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error
+                                   );
+                }
+            }
         }
     }
 }
