@@ -28,5 +28,13 @@ namespace Business_layer
             //call DataAccess;
             return clsEmployeeData.UpdateEmployee(ID,Name,Gender,Phone,Position,Salary,JDate) > 0;
         }
+        public static bool GetEmployeeSalaryByID(int ID, ref int Salary)
+        {
+            return clsEmployeeData.GetEmployeeSalaryByID(ID,ref Salary);
+        }
+        public static bool GetEmployeeNameAndID(int ID, string Name)
+        {
+            return clsEmployeeData.GetEmployeeNameByID( ref ID, ref Name);
+        }
     }
 }

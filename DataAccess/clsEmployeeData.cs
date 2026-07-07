@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
 namespace DataAccess
 {
     public class clsEmployeeData
@@ -28,7 +29,7 @@ namespace DataAccess
                 }
             }
             catch (Exception ex) { }
-            return RowAffected ;
+            return RowAffected;
         }
 
         public static DataTable GetAllEmployee()
@@ -41,10 +42,10 @@ namespace DataAccess
                     string Query = "Select * From employees";
 
                     connection.Open();
-                    using(SqlCommand command = new SqlCommand(Query,connection))
+                    using (SqlCommand command = new SqlCommand(Query, connection))
                     {
                         SqlDataReader reader = command.ExecuteReader();
-                        if(reader.Read())
+                        if (reader.Read())
                         {
                             dt.Load(reader);
                         }
@@ -55,9 +56,10 @@ namespace DataAccess
 
 
             }
-            catch(Exception ex) { };
+            catch (Exception ex) { }
+            ;
             return dt;
-    }
+        }
 
         public static int DeleteEmployee(int ID)
         {
@@ -69,7 +71,7 @@ namespace DataAccess
                     connection.Open();
                     string Query = @"Delete from Salaries where EmployeeID = @EmpID
                                      Delete from Employees where EmpID = @EmpID ";
-                    
+
 
                     using (SqlCommand command = new SqlCommand(Query, connection))
                     {
@@ -79,8 +81,8 @@ namespace DataAccess
                 }
             }
             catch (Exception ex) { }
-            return RowAffected ;
-                
+            return RowAffected;
+
         }
 
         public static int UpdateEmployee(int ID, string Name, string Gender, string Phone, string Position, int Salary, string JDate)
@@ -99,7 +101,7 @@ namespace DataAccess
       ,[Salary] = @Salary
       ,[Joindate] = @Joindate
        WHERE EmpID = @EmpID";
-                                     
+
 
 
                     using (SqlCommand command = new SqlCommand(Query, connection))
@@ -123,7 +125,90 @@ namespace DataAccess
         }
 
 
+        public bool GetEmployeeSalaryByID(int EmpID, ref int Salart)
+        {
+            bool IsFound = false;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsConnection.ConString))
+                {
+                    connection.Open();
+
+                    string query = "SELECT * FROM Employees WHERE EmpID = @EmpID";
 
 
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@EmpID", EmpID);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found
+                                IsFound = true;
+                                Salart = (int)reader["Salary"];
+                            }
+                            else
+                            {
+                                // The record was not found
+                                IsFound = false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception k)
+            {
+
+                IsFound = false;
+            }
+        return IsFound;
+        }
+        public bool GetEmployeeNameByID(int EmpID, ref string Name)
+        {
+            bool IsFound = false;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsConnection.ConString))
+                {
+                    connection.Open();
+
+                    string query = "SELECT * FROM Employees WHERE EmpID = @EmpID";
+
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@EmpID", EmpID);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // The record was found
+                                IsFound = true;
+                                Name = (string)reader["Name"];
+                            }
+                            else
+                            {
+                                // The record was not found
+                                IsFound = false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception k)
+            {
+
+                IsFound = false;
+            }
+            return IsFound;
+        }
+
+
+
+
+        /////
     }
 }
