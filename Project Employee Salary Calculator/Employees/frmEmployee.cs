@@ -182,7 +182,6 @@ namespace Employee_Salary_Calculator.Dashbord
             txtESalary.Clear();
             cbGen.SelectedIndex = 0;
         }
-
         private void btnEmployees_Click(object sender, EventArgs e)
         {
            RefreshEmployeeForm();
@@ -214,6 +213,15 @@ namespace Employee_Salary_Calculator.Dashbord
             {
                 e.Handled = true;
             }
+        }
+        private void btnAnalytics_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+    "This feature is not available in this version yet.",
+    "Coming Soon",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Information
+);
         }
     }
 }

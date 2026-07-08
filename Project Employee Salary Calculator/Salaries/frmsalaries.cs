@@ -193,5 +193,15 @@ namespace Employee_Salary_Calculator.Salaries
                 }
             }
         }
+
+        private void btnAnalytics_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+    "This feature is not available in this version yet.",
+    "Coming Soon",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Information
+);
+        }
     }
 }
