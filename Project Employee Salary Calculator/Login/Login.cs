@@ -1,4 +1,5 @@
-﻿using Employee_Salary_Calculator.Dashbord;
+﻿using Business_layer;
+using Employee_Salary_Calculator.Dashbord;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -50,6 +51,15 @@ namespace Employee_Salary_Calculator
             
             if (txtPassword.Text == "admin" && txtUsername.Text == "admin")
             {
+                if(cbRememberMe.Checked)
+                {
+                    GlobalClass.RememberUsernameAndPassword(txtUsername.Text.Trim(), txtPassword.Text.Trim());
+                }
+                else
+                {
+                    GlobalClass.RememberUsernameAndPassword("", "");
+                }
+
                 frmEmployee frm = new frmEmployee();
                 frm.Show();
                 this.Hide();
@@ -66,6 +76,21 @@ namespace Employee_Salary_Calculator
         {
             txtPassword.Validating += ValidateEmptyTextBox;
             txtUsername.Validating += ValidateEmptyTextBox;
+
+            string Username = "", Password = "";
+
+            if(GlobalClass.GetStoredCredential( ref Username, ref Password) != null)
+            {
+                txtUsername.Text = Username;
+                txtPassword.Text = Password;
+                cbRememberMe.Checked = true;
+            }
+            else
+            {
+                cbRememberMe.Checked = false;
+            }
+
+
         }
 
         private void Reset_Click(object sender, EventArgs e)

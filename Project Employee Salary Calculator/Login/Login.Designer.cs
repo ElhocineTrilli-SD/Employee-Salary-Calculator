@@ -36,17 +36,18 @@
             this.btnLogin = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.guna2GradientPanel2 = new Guna.UI2.WinForms.Guna2GradientPanel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnExit = new Guna.UI2.WinForms.Guna2Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.cbRememberMe = new Guna.UI2.WinForms.Guna2CheckBox();
             this.guna2GradientPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -62,6 +63,7 @@
             // 
             // txtUsername
             // 
+            this.txtUsername.BorderRadius = 15;
             this.txtUsername.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtUsername.DefaultText = "";
             this.txtUsername.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -81,6 +83,7 @@
             // 
             // txtPassword
             // 
+            this.txtPassword.BorderRadius = 15;
             this.txtPassword.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtPassword.DefaultText = "";
             this.txtPassword.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -90,7 +93,7 @@
             this.txtPassword.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtPassword.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtPassword.Location = new System.Drawing.Point(291, 265);
+            this.txtPassword.Location = new System.Drawing.Point(291, 256);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PlaceholderText = "Password";
@@ -131,8 +134,43 @@
             this.guna2GradientPanel2.FillColor2 = System.Drawing.Color.Teal;
             this.guna2GradientPanel2.Location = new System.Drawing.Point(0, 0);
             this.guna2GradientPanel2.Name = "guna2GradientPanel2";
-            this.guna2GradientPanel2.Size = new System.Drawing.Size(235, 476);
+            this.guna2GradientPanel2.Size = new System.Drawing.Size(252, 476);
             this.guna2GradientPanel2.TabIndex = 7;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Segoe UI Black", 21.25F, System.Drawing.FontStyle.Bold);
+            this.label4.ForeColor = System.Drawing.Color.Gold;
+            this.label4.Location = new System.Drawing.Point(3, 205);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(210, 40);
+            this.label4.TabIndex = 39;
+            this.label4.Text = "CALCULATOR";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(2, 173);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(233, 32);
+            this.label2.TabIndex = 38;
+            this.label2.Text = "EMPLOYEE SALARY";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(12, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(207, 154);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 37;
+            this.pictureBox2.TabStop = false;
             // 
             // pictureBox1
             // 
@@ -164,6 +202,7 @@
             // btnExit
             // 
             this.btnExit.BackColor = System.Drawing.Color.Transparent;
+            this.btnExit.CausesValidation = false;
             this.btnExit.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnExit.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnExit.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -178,40 +217,24 @@
             this.btnExit.TabIndex = 36;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // pictureBox2
+            // cbRememberMe
             // 
-            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(12, 3);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(207, 154);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 37;
-            this.pictureBox2.TabStop = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(2, 173);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(233, 32);
-            this.label2.TabIndex = 38;
-            this.label2.Text = "EMPLOYEE SALARY";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Segoe UI Black", 21.25F, System.Drawing.FontStyle.Bold);
-            this.label4.ForeColor = System.Drawing.Color.Gold;
-            this.label4.Location = new System.Drawing.Point(3, 205);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(210, 40);
-            this.label4.TabIndex = 39;
-            this.label4.Text = "CALCULATOR";
+            this.cbRememberMe.AutoSize = true;
+            this.cbRememberMe.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbRememberMe.CheckedState.BorderRadius = 0;
+            this.cbRememberMe.CheckedState.BorderThickness = 0;
+            this.cbRememberMe.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbRememberMe.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbRememberMe.ForeColor = System.Drawing.Color.Teal;
+            this.cbRememberMe.Location = new System.Drawing.Point(291, 312);
+            this.cbRememberMe.Name = "cbRememberMe";
+            this.cbRememberMe.Size = new System.Drawing.Size(131, 24);
+            this.cbRememberMe.TabIndex = 37;
+            this.cbRememberMe.Text = " Remember me";
+            this.cbRememberMe.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.cbRememberMe.UncheckedState.BorderRadius = 0;
+            this.cbRememberMe.UncheckedState.BorderThickness = 0;
+            this.cbRememberMe.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
             // 
             // frmLogin
             // 
@@ -219,6 +242,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ClientSize = new System.Drawing.Size(658, 476);
+            this.Controls.Add(this.cbRememberMe);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.pictureBox1);
@@ -234,9 +258,9 @@
             this.Load += new System.EventHandler(this.frmLogin_Load);
             this.guna2GradientPanel2.ResumeLayout(false);
             this.guna2GradientPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -256,6 +280,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
+        private Guna.UI2.WinForms.Guna2CheckBox cbRememberMe;
     }
 }
 
