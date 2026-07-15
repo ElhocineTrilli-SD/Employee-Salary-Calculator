@@ -57,7 +57,8 @@ namespace Employee_Salary_Calculator
                 }
                 else
                 {
-                    GlobalClass.RememberUsernameAndPassword("", "");
+                  
+                    GlobalClass.DeleteRememberedCredentials(txtUsername.Text.Trim(), txtPassword.Text.Trim());
                 }
 
                 frmEmployee frm = new frmEmployee();
