@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analytics\frmAnalytics.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Analytics\frmAnalytics.Designer.cs">
+      <DependentUpon>frmAnalytics.cs</DependentUpon>
+    </Compile>
     <Compile Include="Employees\frmEmployee.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +75,9 @@
     <Compile Include="Salaries\frmsalaries.Designer.cs">
       <DependentUpon>frmsalaries.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Analytics\frmAnalytics.resx">
+      <DependentUpon>frmAnalytics.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Employees\frmEmployee.resx">
       <DependentUpon>frmEmployee.cs</DependentUpon>
     </EmbeddedResource>
