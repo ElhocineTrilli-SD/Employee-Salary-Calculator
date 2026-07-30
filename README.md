@@ -5,7 +5,7 @@ The system allows users to store employee information, create salary payments, c
 
 ![image alt](https://github.com/ElhocineTrilli-SD/Employee-Salary-Calculator/blob/c0c272c2b0018cf269263b15fa12a852da22d3e0/Project_Pictures/Login.png)
 ![image alt](https://github.com/ElhocineTrilli-SD/Employee-Salary-Calculator/blob/c8ef2578465c55fde9a66dc8f82f8efdd9769c4d/Project_Pictures/Employee_form.png)
-![image alt]()
+![image alt](https://github.com/ElhocineTrilli-SD/Employee-Salary-Calculator/blob/559d676644706c573d2ac84340681f9896ad97c9/Project_Pictures/Salaries_Form.png)
 
 ---
 
