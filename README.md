@@ -3,6 +3,8 @@
 A desktop application built with **C#**, **WinForms**, and **SQL Server** for managing employees and salary records.  
 The system allows users to store employee information, create salary payments, calculate total salary based on worked days and daily wage, and manage payroll records through a clean desktop interface.
 
+![image alt](https://github.com/ElhocineTrilli-SD/Employee-Salary-Calculator/blob/c0c272c2b0018cf269263b15fa12a852da22d3e0/Project_Pictures/Login.png)
+
 ---
 
 ## Overview
